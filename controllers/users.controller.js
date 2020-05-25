@@ -23,7 +23,11 @@ module.exports.postCreateUser = (req,res)=>{
         errors.push('Phone cannot empty!');
         flag = true;
     }
-    req.body.avatar = req.file.path.split('\\').slice(1).join('/');
+    if(req.file){
+        req.body.avatar = req.file.path.split('\\').slice(1).join('/');
+    }else{
+        req.body.avatar = 'https://picsum.photos/80/80';
+    }
     
     if(!flag){
         req.body.id = shortid.generate();
