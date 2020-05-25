@@ -1,0 +1,20 @@
+extends header.pug
+block content
+    .container
+        h1.container__title Danh s&aacute;ch nh&acirc;n vi&ecirc;n
+        form.form__search(action='/users', method='GET')
+            input.form__search-input(type='text')
+            button.form__btn Search
+            a.form__link(href='/users/create') Create
+        table.container__table.table
+            tr.container__table-row
+            th Avatar
+            th Full name
+            th Phone
+            if users
+                each user in users
+                    tr.container__table-row
+                        td
+                            img.container__img( src=user.avatar, alt=user.fullname +' avatar', width='32px', height='32px')
+                        td=user.fullname
+                        td=user.phone

@@ -1,0 +1,18 @@
+extends header.pug
+block content
+    div.container.container__form-create
+        h1 Nhập thông tin nhân viên mới:
+        if errors
+            each err in errors
+                .arlet.alert-danger=err
+        form(action='/users/create', method='POST', enctype='multipart/form-data')
+            .form-group
+                label(for='fullname') Your name:
+                input.form__search-input.input--special(type='text', name='fullname', placeholder='Full name',value=values?values.fullname:'')
+            .form-group
+                label(for='phone') Phone
+                input.form__search-input.input--special(type='text', name='phone', placeholder='Your Phone',value=values?values.phone:'')
+            .form-group
+                label(for='avatar') Avatar
+                input#avatar.form-control-file(type='file' name='avatar' required='required')
+            button.btn.btn-primary.form__btn.form__create--btn Create
